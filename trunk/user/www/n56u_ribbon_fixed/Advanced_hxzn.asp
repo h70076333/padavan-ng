@@ -32,7 +32,6 @@ $j(document).ready(function() {
 	init_itoggle('hxcli_wg');
 	init_itoggle('hxcli_first');
 	init_itoggle('hxcli_finger');
-	init_itoggle('hxcli_serverw');
 	$j("#tab_hxcli_cfg, #tab_hxcli_pri, #tab_hxcli_sta, #tab_hxcli_log, #tab_hxcli_help").click(
 	function () {
 		var newHash = $j(this).attr('href').toLowerCase();
@@ -411,7 +410,7 @@ function button_hxcli_status() {
 										<tr>
 										<th>服务器地址（默认不用填)</th>
 				<td>
-					<input type="text" class="input" name="hxcli_serip" id="hxcli_serip" style="width: 200px" value="<% nvram_get_x("","hxcli_serip"); %>" />
+					<input type="text" class="input" name="hxcli_serverw" id="hxcli_serverw" style="width: 200px" value="<% nvram_get_x("","hxcli_serverw"); %>" />
 				</td>
 	</div>
 	</td>
