@@ -445,6 +445,120 @@ void restart_dnscrypt(void){
 	restart_dhcpd();
 }
 #endif
+
+#if defined(APP_ZEROTIER)
+void stop_zerotier(void){
+	eval("/usr/bin/zerotier.sh","stop");
+}
+
+void start_zerotier(void){
+	int zerotier_enable = nvram_get_int("zerotier_enable");
+	if ( zerotier_enable == 1)
+		eval("/usr/bin/zerotier.sh","start");
+}
+
+void restart_zerotier(void){
+	stop_zerotier();
+	start_zerotier();
+}
+#endif
+
+#if defined(APP_NELINK)
+void stop_nelink(void){
+	eval("/usr/bin/ne.sh","stop");
+}
+
+void start_nelink(void){
+	int nelink_enable = nvram_get_int("nelink_enable");
+	if ( nelink_enable == 1)
+		eval("/usr/bin/ne.sh","start");
+}
+
+void restart_nelink(void){
+	stop_nelink();
+	start_nelink();
+}
+#endif
+
+#if defined(APP_ETINK)
+void stop_etink(void){
+	eval("/usr/bin/etink.sh","stop");
+}
+
+void start_etink(void){
+	int etink_enable = nvram_get_int("etink_enable");
+	if ( etink_enable == 1)
+		eval("/usr/bin/etink.sh","start");
+}
+
+void stop_etweb(void){
+	eval("/usr/bin/etink.sh","stop");
+}
+
+void start_etweb(void){
+	int etweb_enable = nvram_get_int("etweb_enable");
+	if ( etweb_enable == 1)
+		eval("/usr/bin/etink.sh","start");
+}
+
+void restart_etink(void){
+	stop_etink();
+	start_etink();
+	start_etweb();
+}
+#endif
+
+#if defined(APP_NTWON)
+void stop_ntwon(void){
+	eval("/usr/bin/ntwon.sh","stop");
+}
+
+void start_ntwon(void){
+	int ntwon_enable = nvram_get_int("ntwon_enable");
+	if ( ntwon_enable == 1)
+		eval("/usr/bin/ntwon.sh","start");
+}
+
+void restart_ntwon(void){
+	stop_ntwon();
+	start_ntwon();
+}
+#endif
+
+#if defined(APP_HXCLI)
+void stop_hxcli(void){
+	eval("/usr/bin/hx.sh","stop");
+}
+
+void start_hxcli(void){
+	int hxcli_enable = nvram_get_int("hxcli_enable");
+	if ( hxcli_enable == 1)
+		eval("/usr/bin/hx.sh","start");
+}
+
+void restart_hxcli(void){
+	stop_hxcli();
+	start_hxcli();
+}
+#endif
+
+#if defined(APP_BAFA)
+void stop_bafa(void){
+	eval("/usr/bin/bafa.sh","stop");
+}
+
+void start_bafa(void){
+	int bafa_enable = nvram_get_int("bafa_enable");
+	if ( bafa_enable == 1)
+		eval("/usr/bin/bafa.sh","start");
+}
+
+void restart_bafa(void){
+	stop_bafa();
+	start_bafa();
+}
+#endif
+
 #if defined(APP_VLMCSD)
 int is_vlmcsd_run(void){
 	if (check_if_file_exist("/usr/bin/vlmcsd"))
@@ -771,6 +885,21 @@ stop_services(int stopall)
 #endif
 #if defined(APP_DNSCRYPT)
 	stop_dnscrypt();
+#endif
+#if defined(APP_HXCLI)
+	stop_hxcli();
+#endif
+#if defined(APP_NELINK)
+	stop_nelink();
+#endif
+#if defined(APP_NTWON)
+	stop_ntwon();
+#endif
+#if defined(APP_ETLINK)
+	stop_etink();
+#endif
+#if defined(APP_BAFA)
+	stop_bafa();
 #endif
 #if defined(APP_VLMCSD)
 	stop_vlmcsd();
