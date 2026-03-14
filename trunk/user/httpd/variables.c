@@ -68,6 +68,31 @@
 			{0,0,0,0}
 		};
 
+	struct variable variables_ZeroConf_ZeroList[] = {
+			{"zero_enable_x", "24", NULL, FALSE},
+			{"zero_ip_x", "24", NULL, FALSE},
+			{"zero_route_x", "24", NULL, FALSE},
+			{0,0,0,0}
+		};
+	struct variable variables_NELINK_NELINKtorou[] = {
+			{"nelink_name_x", "24", NULL, FALSE},
+			{"nelink_route_x", "24", NULL, FALSE},
+			{"nelink_ip_x", "24", NULL, FALSE},
+			{0,0,0,0}
+		};
+	struct variable variables_NTWON_NTWONinrou[] = {
+			{"ntwon_name_x", "24", NULL, FALSE},
+			{"ntwon_route_x", "24", NULL, FALSE},
+			{"ntwon_ip_x", "24", NULL, FALSE},
+			{0,0,0,0}
+		};
+	struct variable variables_HXCLI_HXCLIroute[] = {
+			{"hxcli_name_x", "24", NULL, FALSE},
+			{"hxcli_route_x", "24", NULL, FALSE},
+			{"hxcli_ip_x", "24", NULL, FALSE},
+			{0,0,0,0}
+		};
+
 	struct variable variables_RouterConfig_GWStatic[] = {
 			{"sr_ipaddr_x", "17", NULL, FALSE},
 			{"sr_netmask_x", "17", NULL, FALSE},
@@ -1006,6 +1031,149 @@
 		{0,0}
 	};
 
+#if defined(APP_ZEROTIER)
+	struct variable variables_ZeroConf[] = {
+			{"zerotier_enable", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotier_id", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotier_moonid", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotiermoon_enable", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotiermoon_ip", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zerotier_nat", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zero_staticnum_x", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zero_afykey", "", NULL, EVM_RESTART_ZEROTIER},
+			{"zero_afynen", "", NULL, EVM_RESTART_ZEROTIER},
+			{"afycx_enable", "", NULL, EVM_RESTART_ZEROTIER},
+			{"gecoac_enable", "", NULL, EVM_RESTART_ZEROTIER},
+			{"ZeroList", "Group", ARGV((char*)variables_ZeroConf_ZeroList, "8", "55", "zero_staticnum_x"), EVM_RESTART_ZEROTIER},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_HXCLI)
+	struct variable variables_HXCLI[] = {
+			{"hxcli_enable", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_token", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_ip", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_localadd", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_serip", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_model", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_key", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_log", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_proxy", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_first", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_wg", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_finger", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_serverw", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_desname", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_id", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_tunname", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_mtu", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_dns", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_stun", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_port", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_punch", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_comp", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_relay", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_wan", "", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_bin", "", NULL, EVM_RESTART_HXCLI},
+			{"scripts.hx.conf", "File", NULL, EVM_RESTART_HXCLI},
+			{"hxcli_routenum_x", "", NULL, EVM_RESTART_HXCLI},
+			{"HXCLIroute", "Group", ARGV((char*)variables_HXCLI_HXCLIroute, "8", "55", "hxcli_routenum_x"), EVM_RESTART_HXCLI},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_NELINK)
+	struct variable variables_NELINK[] = {
+			{"nelink_enable", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_keyg", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_ip", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_log", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_log3", "", NULL, EVM_RESTART_NELINK},
+			{"nelink_routenum_x", "", NULL, EVM_RESTART_NTWON},
+			{"NELINKtorou", "Group", ARGV((char*)variables_NELINK_NELINKtorou, "8", "55", "nelink_routenum_x"), EVM_RESTART_NELINK},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_NTWON)
+	struct variable variables_NTWON[] = {
+			{"ntwon_enable", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_keyg", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_xuip", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log2", "", NULL, EVM_RESTART_NTWON},
+			{"ntwon_log3", "", NULL, EVM_RESTART_NTWON},
+			{"scripts.ntwon.conf", "File", NULL, EVM_RESTART_NTWON},
+			{"ntwon_routenum_x", "", NULL, EVM_RESTART_NTWON},
+			{"NTWONinrou", "Group", ARGV((char*)variables_NTWON_NTWONinrou, "8", "55", "ntwon_routenum_x"), EVM_RESTART_NTWON},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_ETINK)
+	struct variable variables_ETINK[] = {
+			{"etink_enable", "", NULL, EVM_RESTART_ETINK},
+			{"etweb_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_ipv6_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_use_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_latency_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_kcp_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_quic_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_p2p_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_udp_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_system_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_encryption_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_thread_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_dns_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_mode_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_rpc_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_dns_enable", "", NULL, EVM_RESTART_ETINK},
+			{"et_device_enable", "", NULL, EVM_RESTART_ETINK},
+			{"etink_keyg", "", NULL, EVM_RESTART_ETINK},
+			{"etink_pass", "", NULL, EVM_RESTART_ETINK},
+			{"etink_xyip", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log2", "", NULL, EVM_RESTART_ETINK},
+			{"etink_log3", "", NULL, EVM_RESTART_ETINK},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_BAFA)
+	struct variable variables_BAFA[] = {
+			{"bafa_enable", "", NULL, EVM_RESTART_BAFA},
+			{"bafa_topics", "", NULL, EVM_RESTART_BAFA},
+			{"bafa_token", "", NULL, EVM_RESTART_BAFA},
+			{"bafa_qos", "", NULL, EVM_RESTART_BAFA},
+			{"bafa_host", "", NULL, EVM_RESTART_BAFA},
+			{"bafa_port", "", NULL, EVM_RESTART_BAFA},
+			{"bafa_show", "", NULL, EVM_RESTART_BAFA},
+			{"bafa_bin", "", NULL, EVM_RESTART_BAFA},
+			{"scripts.bafa_script.sh", "File", NULL, EVM_RESTART_BAFA},
+			{0,0,0,0}
+	};
+#endif
+
+#if defined(APP_ZEROTIER)
+		{"ZeroConf",		variables_ZeroConf},
+#endif
+#if defined(APP_DDNSTO)
+		{"DDNSTO",		variables_DDNSTO},
+#endif
+#if defined(APP_HXCLI)
+		{"HXCLI",		variables_HXCLI},
+#endif
+#if defined(APP_NELINK)
+		{"NELINK",		variables_NELINK},
+#endif
+#if defined(APP_NTWON)
+		{"NTWON",		variables_NTWON},
+#endif
+#if defined(APP_ETINK)
+		{"ETINK",		variables_ETINK},
+#endif
+
 	struct evDesc events_desc[] = {
 		{EVM_RESTART_IPV6,		EVT_RESTART_IPV6,		RCN_RESTART_IPV6,	EVM_RESTART_DHCPD|EVM_RESTART_RADV|EVM_RESTART_IPTV|EVM_RESTART_DI|EVM_RESTART_UPNP|EVM_RESTART_FIREWALL|EVM_RESTART_VPNCLI|EVM_RESTART_SWITCH_VLAN|EVM_RESTART_LAN|EVM_RESTART_WAN|EVM_RESTART_MODEM},
 		{EVM_RESTART_LAN,		EVT_RESTART_LAN,		RCN_RESTART_LAN,	EVM_RESTART_DHCPD|EVM_RESTART_RADV|EVM_RESTART_IPTV|EVM_RESTART_DI|EVM_RESTART_UPNP|EVM_RESTART_FIREWALL|EVM_RESTART_VPNSVR},
@@ -1085,6 +1253,24 @@
 #endif
 #if defined(APP_SMBD) || defined(APP_NMBD)
 		{EVM_RESTART_NMBD,		EVT_RESTART_NMBD,		RCN_RESTART_NMBD,	0},
+#endif
+#if defined(APP_ZEROTIER)
+		{EVM_RESTART_ZEROTIER,		EVT_RESTART_ZEROTIER,		RCN_RESTART_ZEROTIER,	0},
+#endif
+#if defined(APP_HXCLI)
+		{EVM_RESTART_HXCLI,		EVT_RESTART_HXCLI,		RCN_RESTART_HXCLI,	0},
+#endif
+#if defined(APP_NELINK)
+		{EVM_RESTART_NELINK,		EVT_RESTART_NELINK,		RCN_RESTART_NELINK,	0},
+#endif
+#if defined(APP_NTWON)
+		{EVM_RESTART_NTWON,		EVT_RESTART_NTWON,		RCN_RESTART_NTWON,	0},
+#endif
+#if defined(APP_ETINK)
+		{EVM_RESTART_ETINK,		EVT_RESTART_ETINK,		RCN_RESTART_ETINK,	0},
+#endif
+#if defined(APP_BAFA)
+		{EVM_RESTART_BAFA,		EVT_RESTART_BAFA,		RCN_RESTART_BAFA,	0},
 #endif
 #if defined(APP_VLMCSD)
 		{EVM_RESTART_VLMCSD,		EVT_RESTART_VLMCSD,		RCN_RESTART_VLMCSD,	EVM_RESTART_DHCPD},
