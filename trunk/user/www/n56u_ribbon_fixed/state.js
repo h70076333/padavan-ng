@@ -382,7 +382,8 @@ function show_banner(L3){
 	show_top_status();
 }
 
-var tabtitle = new Array(10);
+var tabtitle = new Array(15);
+var tablink = new Array(15);
 tabtitle[0] = new Array("", "<#menu5_1_1#>", "<#menu5_1_2#>", "<#menu5_1_3#>", "<#menu5_1_4#>", "<#menu5_1_5#>", "<#menu5_1_6#>");
 tabtitle[1] = new Array("", "<#menu5_1_1#>", "<#menu5_1_2#>", "<#menu5_1_3#>", "<#menu5_1_4#>", "<#menu5_1_5#>", "<#menu5_1_6#>");
 tabtitle[2] = new Array("", "<#menu5_2_1#>", "<#menu5_2_2#>", "<#menu5_2_3#>", "<#menu5_2_4#>", "<#menu5_2_5#>", "<#menu5_2_6#>");
@@ -393,6 +394,24 @@ tabtitle[6] = new Array("", "<#menu5_6_2#>", "<#menu5_6_5#>", "<#menu5_6_1#>", "
 tabtitle[7] = new Array("", "<#menu5_10_1#>", "<#menu5_10_2#>", "<#menu5_10_3#>");
 tabtitle[8] = new Array("", "<#menu5_11#>", "<#menu5_12#>", "WAN", "", "", "", "", "", "", "");
 tabtitle[9] = new Array("", "<#menu5_7_2#>", "<#menu5_7_3#>", "<#menu5_7_5#>", "<#menu5_7_6#>", "<#menu5_7_8#>");
+if (found_app_zerotier()){
+	tabtitle[10] = new Array("", "<#menu5_1_1#>");
+}
+if (found_app_hxcli()){
+	tabtitle[11] = new Array("", "<#menu5_1_1#>");
+}
+if (found_app_nelink()){
+	tabtitle[12] = new Array("", "<#menu5_1_1#>");
+}
+if (found_app_ntwon()){
+	tabtitle[13] = new Array("", "<#menu5_1_1#>");
+}
+if (found_app_etink()){
+	tabtitle[14] = new Array("", "<#menu5_1_1#>");
+}
+if (found_app_bafa()){
+	tabtitle[15] = new Array("", "<#menu5_1_1#>");
+}
 
 //Level 3 Tab title
 var tablink = new Array(10);
@@ -406,11 +425,83 @@ tablink[6] = new Array("", "Advanced_System_Content.asp", "Advanced_Services_Con
 tablink[7] = new Array("", "Advanced_Tweaks_Content.asp", "Advanced_Scripts_Content.asp", "Advanced_InetDetect_Content.asp");
 tablink[8] = new Array("", "Main_WStatus2g_Content.asp", "Main_WStatus_Content.asp", "", "", "", "", "", "", "", "");
 tablink[9] = new Array("", "Main_LogStatus_Content.asp", "Main_DHCPStatus_Content.asp", "Main_IPTStatus_Content.asp", "Main_RouteStatus_Content.asp", "Main_CTStatus_Content.asp");
+if (found_app_zerotier()){
+	zerotier_array = new Array("","Advanced_vpnkey.asp");
+	tablink[10] = (zerotier_array);
+}
+if (found_app_hxcli()){
+	hxcli_arry = new Array("","Advanced_hxzn.asp");
+	tablink[11] = (hxcli_arry);
+}
+if (found_app_nelink()){
+	nelink_array = new Array("","Advanced_nelink.asp");
+	tablink[12] = (nelink_array);
+}
+if (found_app_ntwon()){
+	ntwon_array = new Array("","Advanced_ntwon.asp");
+	tablink[13] = (ntwon_array);
+}
+if (found_app_etink()){
+	etink_array = new Array("","Advanced_etink.asp");
+	tablink[14] = (etink_array);
+}
+if (found_app_bafa()){
+	bafa_array = new Array("","Advanced_bafa.asp");
+	tablink[15] = (bafa_array);
+}
 
 //Level 2 Menu
 menuL2_title = new Array("", "<#menu5_11#>", "<#menu5_12#>", "<#menu5_2#>", "<#menu5_3#>", "<#menu5_5#>", "<#menu5_4#>", "<#menu5_6#>", "<#menu5_10#>", "<#menu5_9#>", "<#menu5_7#>");
 menuL2_link  = new Array("", tablink[0][1], tablink[1][1], tablink[2][1], tablink[3][1], tablink[4][1], tablink[5][1], tablink[6][1], tablink[7][1], support_2g_radio() ? tablink[8][1] : "Main_EStatus_Content.asp", tablink[9][1]);
+if (found_app_zerotier()){
+	menuL2_title.push("组网服务");
+} else menuL2_title.push("");
 
+if (found_app_hxcli()){
+	menuL2_title.push("宏兴智能组网");
+} else menuL2_title.push("");
+	
+if (found_app_nelink()){
+	menuL2_title.push("NE异地组网");
+} else menuL2_title.push("");
+
+if (found_app_ntwon()){
+	menuL2_title.push("N2V2组网");
+} else menuL2_title.push("");
+
+if (found_app_etink()){
+	menuL2_title.push("ET异地组网");
+} else menuL2_title.push("");
+
+if (found_app_bafa()){
+	menuL2_title.push("巴法云物联网");
+} else menuL2_title.push("");
+
+menuL2_link  = new Array("", tablink[0][1], tablink[1][1], tablink[2][1], tablink[3][1], tablink[4][1], tablink[5][1], tablink[6][1], tablink[7][1], support_2g_radio() ? tablink[8][1] : "Main_EStatus_Content.asp", tablink[9][1]);
+if (found_app_zerotier()){
+	menuL2_link.push(zerotier_array[1]);
+} else menuL2_link.push("");
+	
+if (found_app_hxcli()){
+	menuL2_link.push(hxcli_arry[1]);
+} else menuL2_link.push("");
+	
+if (found_app_nelink()){
+	menuL2_link.push(nelink_array[1]);
+} else menuL2_link.push("");
+
+if (found_app_ntwon()){
+	menuL2_link.push(ntwon_array[1]);
+} else menuL2_link.push("");
+
+if (found_app_etink()){
+	menuL2_link.push(etink_array[1]);
+} else menuL2_link.push("");
+
+if (found_app_bafa()){
+	menuL2_link.push(bafa_array[1]);
+} else menuL2_link.push("");
+	
 //Level 1 Menu in Gateway, Router mode
 menuL1_title = new Array("", "<#menu1#>", "<#menu3#>", "<#menu2#>", "<#menu6#>", "<#menu4#>", "<#menu5_8#>", "<#menu5#>");
 menuL1_link = new Array("", "index.asp", "aidisk.asp", "vpnsrv.asp", "vpncli.asp", "Main_TrafficMonitor_realtime.asp", "Advanced_System_Info.asp", "as.asp");
