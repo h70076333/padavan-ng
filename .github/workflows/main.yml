@@ -1,36 +1,114 @@
-#修改TNAME: RM2100 中的RM2100为你需要编译的型号，注意名称要与configs/templates/目录下的名字相同
-name: MA1210SDWAN
-on: 
-  #release:
-  #  types: [published]
-  #push:
-  # tags:
-  # - 'v*'
-  #  branches: 
-  #    - master
-  #schedule:
-  #  - cron: 0 8 * * 5
-  watch:
-    types: [started]
+name: Custom-Router-Build-Final-Fix
+
+on:
+  workflow_dispatch:
+    inputs:
+      target_select:
+        description: "選擇機型 (Target Model)"
+        required: true
+        type: choice
+        options:
+          - K2P
+          - AC105G
+          - K2P-USB
+          - MI-R3G
+          - NEWIFI3
+          - RM2100
+          # 新增支援清單 (基於 trunk/configs/boards)
+          - CR660x
+          - DIR-878
+          - DIR-882
+          - JCG-836PRO
+          - JCG-AC860M
+          - JCG-Q20
+          - JCG-Y2
+          - MI-R3P
+          - MR2600
+          - NETGEAR-BZV
+          - XY-C1
+        default: K2P
+
+      language_select:
+        description: "WebUI 語言設定 (Custom Language Selector)"
+        required: true
+        type: choice
+        default: 'English_Only'
+        options:
+          - English_Only
+          - CN (繁體中文)
+          - RU (Pусский)
+          - BR (Brazil)
+          - CZ (Česky)
+          - DA (Dansk)
+          - DE (Deutsch)
+          - ES (Español)
+          - FI (Finsk)
+          - FR (Français)
+          - NO (Norsk)
+          - PL (Polski)
+          - SV (Svensk)
+          - UK (Українська)
+      
+      nanoversion:
+        description: "開啟極限瘦身 (Nano Optimization)"
+        type: boolean
+        default: true
+      
+      customization:
+        description: '自訂預設配置 JSON (Custom Default Configuration Wi-Fi/Passwords/IP)'
+        required: true
+        type: string
+        default: '{"lanip":"192.168.0.1","signaccount":"admin","signpassword":"admin","wifi2gssid":"Padavan","wifi2gpsk":"1234567890","wifi5gssid":"Padavan-5G","wifi5gpsk":"1234567890"}'
+      
+      toolchain_select:
+        description: "選擇編譯工具鏈 (Select toolchain)"
+        required: true
+        type: choice
+        options:
+          - Default (hanwckf/linux-4.4-v1.0, uclibc)
+          - Padavan-NG (GCC 13+, uClibc-ng, ZSTD)
+          - TurboTse/musl (gcc 13.3.0, musl 1.2.5)
+          - TurboTse/uclibc (gcc 13.3.0, uClibc-ng 1.0.52)
+          - tsl0922/musl (gcc 13.2.0, musl 1.2.4)
+          - tsl0922/uclibc (gcc 13.2.0, uClibc-ng 1.0.43)
+          - hanwckf/uclibc-v1.1 (gcc 7.4.0, uclibc 1.0.32, SO_REUSEPORT patch)
+        default: Padavan-NG (GCC 13+, uClibc-ng, ZSTD)
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
-    - name: Initialization environment
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo apt-get update
-        sudo apt-get -y install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd fakeroot \
-        cpio git gettext automake autopoint texinfo build-essential help2man \
-        pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
-    - name: Clone source code
-      run: |
+      - name: 📥-Checkout-Repository
+        uses: actions/checkout@master
+      
+      - name: 🚀-Install-Dependencies
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            unzip cpio 7zip p7zip-full curl wget git zstd \
+            build-essential fakeroot flex bison gawk gperf \
+            autoconf automake libtool-bin libltdl-dev \
+            python3-docutils autopoint gettext texinfo help2man \
+            zlib1g-dev liblzma-dev liblzo2-dev \
+            libgmp3-dev libmpc-dev libmpfr-dev \
+            libncurses5-dev xxd nano cmake pkg-config ccache jq
+          # 設定台灣時間 YYYYMMDD-HHMM
+          echo "BUILD_TIME=$(TZ='Asia/Taipei' date +%Y%m%d-%H%M)" >> $GITHUB_ENV
+          mkdir -p /opt/images/
+
+      - name: 🔎-Export-Custom-Variables
+        run: |
+          jq empty <<< '${{ inputs.customization }}' || { echo "❌ Invalid JSON"; exit 1; }
+          echo '${{ inputs.customization }}' | jq -r 'to_entries[] | "\(.key)=\(.value)"' | while IFS='=' read -r k v; do
+            echo "${k^^}=$v" >> $GITHUB_ENV  
+          done
+
+      - name: ⬇️-Clone-Source-Code
+        run: |
         git clone --depth=1 https://github.com/h70076333/padavan-ng.git /opt/rt-n56u  
 
       # =======================================================
