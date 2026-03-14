@@ -650,6 +650,32 @@ void stop_torrent(void);
 void run_torrent(void);
 void restart_torrent(void);
 #endif
+#if defined(APP_EBAFA)
+void stop_bafa(void);
+void start_bafa(void);
+void restart_bafa(void);
+#endif
+#if defined(APP_HXCLI)
+void stop_hxcli(void);
+void start_hxcli(void);
+void restart_hxcli(void);
+#endif
+#if defined(APP_NELINK)
+void stop_nelink(void);
+void start_nelink(void);
+void restart_nelink(void);
+#endif
+#if defined(APP_NTWON)
+void stop_ntwon(void);
+void start_ntwon(void);
+void restart_ntwon(void);
+#endif
+#if defined(APP_ETINK)
+void stop_etink(void);
+void start_etink(void);
+void start_etweb(void);
+void restart_etink(void);
+#endif
 #if defined (APP_ARIA)
 int is_aria_run(void);
 int is_aria_support(void);
