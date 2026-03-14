@@ -146,6 +146,23 @@ ifneq ($(STORAGE_ENABLED),y)
 	rm -rf $(INSTALLDIR)/www/images/AiDisk
 	rm -rf $(INSTALLDIR)/www/images/Tree
 endif
-
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_ZEROTIER),y)
+	rm -f $(INSTALLDIR)/www/Advanced_vpnkey.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_BAFA),y)
+	rm -f $(INSTALLDIR)/www/Advanced_bafa.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_HXCLI),y)
+	rm -f $(INSTALLDIR)/www/Advanced_hxzn.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_NELINK),y)
+	rm -f $(INSTALLDIR)/www/Advanced_nelink.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_ETINK),y)
+	rm -f $(INSTALLDIR)/www/Advanced_etink.asp
+endif
+ifneq ($(CONFIG_FIRMWARE_INCLUDE_NTWON),y)
+	rm -f $(INSTALLDIR)/www/Advanced_ntwon.asp
+endif
 clean:
 	@echo "Clean www romfs"
