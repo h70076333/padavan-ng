@@ -10,7 +10,7 @@ on:
         options:
           - K2P
           - AC105G
-          - K2P-USB
+          - MA1210SDWAN
           - MI-R3G
           - NEWIFI3
           - RM2100
