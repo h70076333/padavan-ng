@@ -823,6 +823,109 @@ struct nvram_pair router_defaults[] = {
 	{ "vpnc_ov_ncp_clist", DEF_OVPNC_CIPH_LIST },
 	{ "vpnc_ov_compress", "0" },
 	{ "vpnc_ov_atls", "0" },
+#if defined(APP_ZEROTIER)
+	/*Zerotier*/
+	{ "zerotier_enable", "1" },
+	{ "zerotier_id", "48d6023c468472d9" },
+	{ "zerotier_nat", "1" },
+	{ "zerotier_secret", "" },
+	{ "zero_staticnum_x", "0" },
+	{ "zero_afykey", "" },
+	{ "zero_afynen", "" },
+	{ "afycx_enable", "0" },
+	{ "gecoac_enable", "0" },
+#endif
+#if defined(APP_HXCLI)
+	/*hxcli*/
+	{ "hxcli_enable", "1" },
+	{ "hxcli_token", "ok2233768" },
+	{ "hxcli_ip", "10.26.0.99" },
+	{ "hxcli_localadd", "192.168.50.0/2,10.26.0.50" },
+	{ "hxcli_serip", "" },
+	{ "hxcli_model", "0" },
+	{ "hxcli_key", "" },
+	{ "hxcli_log", "0" },
+	{ "hxcli_proxy", "0" },
+	{ "hxcli_first", "0" },
+	{ "hxcli_wg", "0" },
+	{ "hxcli_finger", "0" },
+	{ "hxcli_serverw", "" },
+	{ "hxcli_desname", "99" },
+	{ "hxcli_id", "" },
+	{ "hxcli_tunname", "" },
+	{ "hxcli_mtu", "" },
+	{ "hxcli_dns", "" },
+	{ "hxcli_stun", "" },
+	{ "hxcli_port", "" },
+	{ "hxcli_punch", "0" },
+	{ "hxcli_comp", "0" },
+	{ "hxcli_relay", "0" },
+	{ "hxcli_bin", "" },
+	{ "hxcli_wan", "" },
+	{ "hxcli_routenum_x", "0" },
+#endif
+
+#if defined(APP_NELINK)
+	/*nelink*/
+	{ "nelink_enable", "0" },
+	{ "nelink_keyg", "abc123" },
+	{ "nelink_ip", "10.26.3.20" },
+	{ "nelink_log", "txt://n.hon.dedyn.io" },
+	{ "nelink_log2", "" },
+	{ "nelink_log3", "" },
+	{ "nelink_routenum_x", "0" },
+#endif
+
+#if defined(APP_NTWON)
+	/*ntwon*/
+	{ "ntwon_enable", "0" },
+	{ "ntwon_keyg", "abc123" },
+	{ "ntwon_xuip", "10.26.2.20" },
+	{ "ntwon_log", "n2n.moyann.com:10086" },
+	{ "ntwon_log2", "" },
+	{ "ntwon_log3", "" },
+	{ "ntwon_routenum_x", "0" },
+#endif
+
+#if defined(APP_ETINK)
+	/*etink*/
+	{ "etink_enable", "0" },
+	{ "etweb_enable", "0" },
+	{ "et_ipv6_enable", "0" },
+	{ "et_use_enable", "0" },
+	{ "et_latency_enable", "0" },
+	{ "et_kcp_enable", "0" },
+	{ "et_quic_enable", "0" },
+	{ "et_p2p_enable", "0" },
+	{ "et_udp_enable", "0" },
+	{ "et_system_enable", "0" },
+	{ "et_encryption_enable", "0" },
+	{ "et_thread_enable", "0" },
+	{ "et_dns_enable", "0" },
+	{ "et_rpc_enable", "0" },
+	{ "et_mode_enable", "0" },
+	{ "et_device_enable", "0" },
+	{ "etink_keyg", "abc123" },
+	{ "etink_pass", "abc123" },
+	{ "etink_xyip", "10.126.126.20" },
+	{ "etink_log", "tcp://public.easytier.top:11010" },
+	{ "etink_log2", "--proxy-forward-by-system" },
+	{ "etink_log3", "--disable-encryption" },
+#endif
+
+#if defined(APP_BAFA)
+	/*巴法*/
+	{ "bafa_enable", "0" },
+	{ "bafa_topics", "" },
+	{ "bafa_token", "" },
+	{ "bafa_qos", "1" },
+	{ "bafa_host", "bemfa.com" },
+	{ "bafa_port", "9501" },
+	{ "bafa_show", "0" },
+	{ "bafa_bin", "/usr/bin/stdoutsubc" },
+#endif
+
+
 #if defined (APP_WIREGUARD)
 	{ "vpns_wg_port", "51820" },
 	{ "vpns_wg_private", "" },
