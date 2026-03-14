@@ -32,7 +32,7 @@ jobs:
     - name: Clone source code
       run: |
         git clone --depth=1 https://github.com/h70076333/padavan-ng.git /opt/rt-n56u  
-        cd /opt/rt-n56u/toolchain-mipsel
+        cd /opt/rt-n56u/toolchain
         sh dl_toolchain.sh
         mkdir -p /opt/images/
   
