@@ -1322,7 +1322,7 @@ jobs:
           TOOLCHAIN_CHOICE: ${{ inputs.toolchain_select }}
           TOOLCHAIN_DIR: /opt/rt-n56u/toolchain-mipsel/toolchain-4.4.x
         run: |
-          cd /opt/rt-n56u/toolchain-mipsel
+          cd /opt/rt-n56u/toolchain
           TOOLCHAIN_TAG_FOR_NAME=$(echo "${{ inputs.toolchain_select }}" | sed 's/ (.*//g' | sed 's/\//-/g')
           echo "TOOLCHAIN_TAG_FOR_NAME=$TOOLCHAIN_TAG_FOR_NAME" >> $GITHUB_ENV
           
