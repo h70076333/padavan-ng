@@ -9,7 +9,7 @@ on:
         type: choice
         options:
           - K2P
-          - AC105G
+          - MA1210SDWAN
           - K2P-USB
           - MI-R3G
           - NEWIFI3
